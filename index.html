@@ -1,726 +1,864 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BloxNest — open multiple Roblox windows</title>
-  <meta name="description"
-        content="BloxNest is a free, open-source Windows app by xRed1 that opens multiple Roblox windows. Windows 10 and 11. About 160 KB, with no installer.">
+  <title>BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows</title>
+  <meta name="description" content="BloxNest is a free Roblox multi-instance app for Windows. Open two Roblox windows or more, and use multiple Roblox accounts at once. Made by xRed1.">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#171A16">
-  <meta name="color-scheme" content="dark">
-
   <link rel="canonical" href="https://bloxnest.github.io/">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BloxNest">
-  <meta property="og:title" content="BloxNest — open multiple Roblox windows">
-  <meta property="og:description"
-        content="A free, open-source Windows app by xRed1. Open multiple Roblox windows and use a different account in each.">
+  <meta property="og:title" content="BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows">
+  <meta property="og:description" content="A free Roblox multi-instance app for Windows. Open two Roblox windows or more, with a different account in each. Made by xRed1.">
   <meta property="og:url" content="https://bloxnest.github.io/">
-  <meta property="og:image"
-        content="https://bloxnest.github.io/assets/app-main.png">
+  <meta property="og:image" content="https://bloxnest.github.io/assets/app-main.png">
   <meta property="og:image:width" content="440">
   <meta property="og:image:height" content="444">
-  <meta property="og:image:alt"
-        content="BloxNest's main window reporting six Roblox windows running.">
+  <meta property="og:image:alt" content="BloxNest Main screen with six windows selected and a status reporting six Roblox windows running.">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BloxNest — open multiple Roblox windows">
-  <meta name="twitter:description"
-        content="A small, free, open-source Windows app by xRed1. Windows 10 and 11, with no installer.">
-  <meta name="twitter:image"
-        content="https://bloxnest.github.io/assets/app-main.png">
-  <meta name="twitter:image:alt"
-        content="BloxNest's main window reporting six Roblox windows running.">
+  <meta name="twitter:title" content="BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows">
+  <meta name="twitter:description" content="A free Roblox multi-instance app for Windows. Open two Roblox windows or more, with a different account in each. Made by xRed1.">
+  <meta name="twitter:image" content="https://bloxnest.github.io/assets/app-main.png">
+  <meta name="twitter:image:alt" content="BloxNest Main screen with six windows selected and a status reporting six Roblox windows running.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://bloxnest.github.io/#application",
+        "name": "BloxNest",
+        "description": "BloxNest is a free Roblox multi-instance app for Windows. Open two Roblox windows or more, and use multiple Roblox accounts at once. Made by xRed1.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Windows 10, Windows 11",
+        "softwareVersion": "1.0.0",
+        "offers": {
+          "@type": "Offer",
+          "price": 0,
+          "priceCurrency": "USD"
+        },
+        "downloadUrl": "https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe",
+        "url": "https://bloxnest.github.io/",
+        "image": "https://bloxnest.github.io/assets/app-main.png",
+        "author": {
+          "@type": "Person",
+          "name": "xRed1"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://bloxnest.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I open two Roblox windows at once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Finish your game, open BloxNest, choose 2 windows and start them. Use a different account in each window to play with multiple accounts at once."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get banned?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BloxNest doesn’t modify Roblox or inject anything. It isn’t made or approved by Roblox, so nobody can promise you won’t be banned; use it at your own risk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is BloxNest free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, BloxNest is free to use. Its code is source available under the PolyForm Strict License 1.0.0: you can read the code and use the app, but you can’t redistribute it or publish modified versions."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root {
       color-scheme: dark;
       --bg: #171A16;
-      --surface: #21261E;
-      --border: #2B3228;
-      --border-strong: #333B2D;
+      --surface: #1C2019;
+      --surface-high: #293024;
+      --line: #343C2F;
       --text: #EEF1E9;
       --muted: #A3AB9C;
-      --quiet: #929C89;
-      --lime: #D5F478;
-      --lime-text: #17200C;
-      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+      --quiet: #9AA391;
+      --accent: #D5F478;
+      --on-accent: #17200C;
+
+      --s1: 4px;
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s6: 24px;
+      --s8: 32px;
+      --s12: 48px;
+      --s16: 64px;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+      --font: "Segoe UI Variable Text", "Segoe UI", system-ui,
+        -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+      --display: "Segoe UI Variable Display", "Segoe UI", system-ui,
+        -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
     html {
-      scroll-padding-top: 24px;
+      scroll-padding-top: 88px;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.65;
+      font: 16px/1.6 var(--font);
       -webkit-font-smoothing: antialiased;
     }
 
     ::selection {
-      background: var(--lime);
-      color: var(--lime-text);
+      background: var(--accent);
+      color: var(--on-accent);
     }
 
-    a {
-      color: var(--lime);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-      overflow-wrap: anywhere;
+    h1, h2, h3, p, figure { margin: 0; }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-weight: 700;
+      text-wrap: balance;
     }
 
-    a:hover {
-      text-decoration-thickness: 2px;
-    }
-
-    a,
-    summary {
-      touch-action: manipulation;
-    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+    svg { display: block; flex: none; }
+    a, button, summary { touch-action: manipulation; }
+    [hidden] { display: none !important; }
 
     :focus-visible {
-      outline: 3px solid var(--lime);
-      outline-offset: 5px;
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
-    h1,
-    h2,
-    h3,
-    p,
-    figure {
-      margin: 0;
-    }
-
-    h1,
-    h2,
-    h3 {
-      line-height: 1.18;
-      font-weight: 700;
-    }
-
-    h1 {
-      max-width: 13ch;
-      font-size: clamp(2.25rem, 4.4vw, 3.65rem);
-      letter-spacing: -.035em;
-    }
-
-    h2 {
-      font-size: clamp(1.65rem, 3vw, 2.15rem);
-      letter-spacing: -.025em;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      line-height: 1.4;
-    }
-
-    p + p {
-      margin-top: 14px;
-    }
-
-    strong {
-      color: var(--text);
-      font-weight: 650;
-    }
+    main:focus { outline: none; }
 
     .container {
-      width: min(1080px, calc(100% - 48px));
+      width: min(1080px, calc(100% - var(--s16)));
       margin-inline: auto;
     }
 
-    .skip-link {
+    .sr-only {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 10;
-      padding: 12px 18px;
-      border-radius: 6px;
-      background: var(--lime);
-      color: var(--lime-text);
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: var(--s3);
+      left: var(--s4);
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--s3) var(--s4);
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: var(--on-accent);
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus { transform: none; }
+    .skip-link:active { opacity: .85; }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s2);
+      min-width: 44px;
+      min-height: 44px;
+      color: var(--muted);
+      transition: opacity 160ms var(--ease);
+    }
+
+    .link-label {
+      position: relative;
+      min-width: 0;
+    }
+
+    .link-label::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -3px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 200ms var(--ease);
+    }
+
+    .text-link:focus-visible .link-label::after,
+    .brand:focus-visible .link-label::after {
+      transform: scaleX(1);
+    }
+
+    .text-link:active { opacity: .7; }
+
+    .button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s2);
+      min-height: 52px;
+      padding: var(--s3) var(--s6);
+      border: 0;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: var(--on-accent);
+      font-size: 15px;
       font-weight: 700;
-      transform: translateY(-180%);
+      line-height: 1.4;
+      text-align: center;
+      transition: transform 200ms var(--ease);
     }
 
-    .skip-link:focus {
-      transform: translateY(0);
+    .button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: rgb(255 255 255 / .16);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms var(--ease);
     }
 
-    .site-header .container {
+    .button:focus-visible::before { opacity: 1; }
+    .button:active { transform: scale(.98); }
+    .button svg { width: 20px; height: 20px; }
+
+    .button-small {
+      min-height: 44px;
+      padding: var(--s2) var(--s4);
+      font-size: 13px;
+    }
+
+    /* Solid fallback: content never scrolls behind an unbacked header. */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      isolation: isolate;
+      background: var(--bg);
+    }
+
+    .site-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transition: opacity 200ms var(--ease);
+      pointer-events: none;
+    }
+
+    .site-header.is-scrolled::before { opacity: 1; }
+
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px 24px;
-      min-height: 84px;
-      padding-block: 16px;
-      border-bottom: 1px solid var(--border-strong);
+      gap: var(--s4);
+      min-height: 72px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      flex: none;
+      gap: var(--s2);
       min-height: 44px;
-      color: var(--text);
-      font-size: 1.25rem;
+      font-family: var(--display);
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -.025em;
-      text-decoration: none;
+      transition: opacity 160ms var(--ease);
     }
 
-    .brand img {
-      flex: 0 0 auto;
-      width: 33px;
-      height: 33px;
-    }
+    .brand img { width: 28px; height: 28px; }
+    .brand:active { opacity: .7; }
 
-    .navigation {
+    .nav-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 4px 16px;
-    }
-
-    .navigation a {
-      display: inline-flex;
       align-items: center;
-      min-height: 44px;
-      padding: 6px 4px;
-      color: var(--muted);
-      font-size: .9375rem;
-      text-decoration: none;
+      gap: var(--s6);
+      font-size: 14px;
     }
 
-    .navigation a:hover {
-      color: var(--lime);
-      text-decoration: underline;
-    }
-
+    /* Only the introduction is centered; supporting content shares a left grid. */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 48px;
-      padding-block: 60px;
+      padding-block: var(--s8) var(--s12);
+      text-align: center;
     }
 
-    .byline {
-      margin-bottom: 16px;
+    .eyebrow {
+      margin-bottom: var(--s3);
       color: var(--muted);
-      font-size: .9375rem;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .025em;
     }
 
-    h1 span {
-      color: var(--lime);
+    .hero h1 {
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.06;
+      letter-spacing: -.04em;
     }
 
-    .hero-description {
-      max-width: 48ch;
-      margin-top: 22px;
+    .hero h1 span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 52ch;
+      margin: var(--s4) auto 0;
       color: var(--muted);
-      font-size: 1.125rem;
+      font-size: 18px;
+      line-height: 1.55;
+      text-wrap: balance;
     }
 
-    .launch-note {
-      max-width: 53ch;
-      margin-top: 16px;
-      color: var(--muted);
-    }
+    .hero-cta { margin-top: var(--s6); }
 
-    .actions {
+    .hero-actions {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 12px 20px;
-      margin-top: 24px;
-    }
-
-    .button {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 12px 20px;
-      border: 1px solid var(--lime);
-      border-radius: 7px;
-      background: var(--lime);
-      color: var(--lime-text);
-      font: inherit;
-      font-weight: 700;
-      line-height: 1.4;
-      text-align: center;
-      text-decoration: none;
+      gap: var(--s2) var(--s6);
     }
 
-    .button svg {
-      flex: 0 0 auto;
+    .hero-actions .text-link { font-size: 14px; }
+
+    .meta {
+      margin-top: var(--s2);
+      color: var(--quiet);
+      font-size: 12px;
+      line-height: 1.6;
+      font-variant-numeric: tabular-nums;
     }
 
-    .button:hover {
-      background: #E0FA99;
-      border-color: #E0FA99;
-      text-decoration: none;
+    .preview {
+      width: min(458px, 100%);
+      margin: var(--s6) auto 0;
     }
 
-    .action-link {
-      display: inline-flex;
-      align-items: center;
+    /* With scripting enabled, reserve exactly the enhanced control height.
+       Visibility prevents dead controls being exposed before initialization. */
+    .tab-bar {
+      display: none;
+      justify-content: center;
+      margin-bottom: var(--s3);
+    }
+
+    @media (scripting: enabled) {
+      .tab-bar {
+        display: flex;
+        visibility: hidden;
+      }
+    }
+
+    .preview.tabs-ready .tab-bar {
+      display: flex;
+      visibility: visible;
+    }
+
+    .tabs {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: repeat(2, 100px);
+      padding: var(--s1);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+    }
+
+    .tab-indicator {
+      position: absolute;
+      top: var(--s1);
+      bottom: var(--s1);
+      left: var(--s1);
+      z-index: -1;
+      width: 100px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-high);
+      transition: transform 240ms var(--ease);
+      pointer-events: none;
+    }
+
+    .tabs[data-active="1"] .tab-indicator {
+      transform: translateX(100px);
+    }
+
+    .tab {
+      position: relative;
       min-height: 44px;
-    }
-
-    .download-meta {
-      margin-top: 12px;
+      padding: var(--s2) var(--s4);
+      border: 0;
+      border-radius: var(--radius-sm);
+      background: transparent;
       color: var(--muted);
-      font-size: .9375rem;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: transform 160ms var(--ease);
     }
 
-    .download-warning {
-      max-width: 54ch;
-      margin-top: 16px;
-      padding-left: 14px;
-      border-left: 2px solid var(--lime);
-      color: var(--muted);
-      font-size: .9375rem;
+    .tab::after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: calc(50% - 8px);
+      width: 16px;
+      height: 2px;
+      border-radius: 1px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 160ms var(--ease);
     }
 
-    .screenshot {
+    .tab[aria-selected="true"] { color: var(--text); }
+    .tab[aria-selected="true"]::after { opacity: 1; }
+    .tab:active { transform: scale(.96); }
+    .tab:focus-visible { outline-offset: -2px; }
+
+    .screenshot-frame {
+      padding: var(--s2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+    }
+
+    /* Fixed geometry for both tabs; Main has no vertical letterboxing.
+       Options is contained at the same height, without cropping/distortion. */
+    .screenshot-stage {
+      display: grid;
       width: 100%;
-      max-width: 440px;
-      margin-inline: auto;
+      aspect-ratio: 440 / 444;
+    }
+
+    .screenshot-panel {
+      grid-area: 1 / 1;
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-sm);
+    }
+
+    .screenshot-panel:focus-visible { outline-offset: 2px; }
+
+    .screenshot-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+    }
+
+    .preview-fallback {
+      margin-top: var(--s3);
+      text-align: left;
+    }
+
+    .preview-fallback img {
+      width: 100%;
+      height: auto;
+      margin-block: var(--s3);
+    }
+
+    .three-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s8);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .features {
+      padding-block: var(--s8);
+      border-top: 1px solid var(--line);
+    }
+
+    .feature {
+      position: relative;
       min-width: 0;
     }
 
-    .screenshot img {
-      width: 100%;
-      border: 1px solid var(--border-strong);
-      border-radius: 10px;
-      box-shadow: 0 12px 28px rgb(0 0 0 / 16%);
+    .feature + .feature::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 calc(var(--s4) * -1);
+      width: 1px;
+      background: var(--line);
     }
 
-    figcaption {
-      margin-top: 12px;
+    .feature h3 {
+      margin-bottom: var(--s2);
+      font-size: 18px;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+    }
+
+    .feature p {
+      max-width: 36ch;
       color: var(--muted);
-      font-size: .875rem;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    figcaption a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-    }
-
-    .section {
-      padding-block: 48px;
-      border-top: 1px solid var(--border-strong);
-    }
-
-    .section-intro {
-      max-width: 68ch;
-      margin-top: 14px;
-      color: var(--muted);
-    }
-
-    .setup-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: start;
-      gap: 40px;
-      margin-top: 28px;
-    }
-
-    .steps {
-      margin: 0;
-      padding-left: 26px;
-    }
-
-    .steps li {
-      padding-left: 8px;
-    }
-
-    .steps li + li {
-      margin-top: 24px;
-    }
-
-    .steps li::marker {
-      color: var(--lime);
-      font-weight: 700;
-    }
-
-    .steps p {
-      margin-top: 8px;
-      color: var(--muted);
-    }
-
-    .first-run {
-      padding: 24px;
-      background: var(--surface);
-      border: 1px solid var(--border-strong);
-      border-radius: 9px;
-    }
-
-    .first-run h3 {
-      margin-bottom: 12px;
-    }
-
-    .first-run p {
-      color: var(--muted);
-    }
-
-    .settings-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      align-items: start;
-      gap: 48px;
-    }
-
-    .settings-list {
-      margin: 24px 0 0;
-    }
-
-    .settings-list > div {
-      padding-block: 18px;
-      border-top: 1px solid var(--border);
-    }
-
-    dt {
-      color: var(--text);
-      font-weight: 650;
-      line-height: 1.4;
-    }
-
-    dd {
-      margin: 8px 0 0;
-      color: var(--muted);
-    }
-
-    .privacy-layout {
-      display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-      gap: 48px;
-    }
-
-    .privacy-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 24px;
-      margin-top: 16px;
-    }
-
-    .privacy-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-    }
-
-    .privacy-list {
-      margin: 0;
-    }
-
-    .privacy-list > div + div {
-      margin-top: 22px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-    }
-
-    .faq-list {
-      max-width: 850px;
-      margin-top: 24px;
-      border-top: 1px solid var(--border-strong);
-    }
-
-    details {
-      border-bottom: 1px solid var(--border-strong);
-    }
-
-    summary {
-      padding: 18px 8px 18px 0;
-      cursor: pointer;
-      font-weight: 650;
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
       line-height: 1.5;
     }
 
-    summary::marker {
-      color: var(--lime);
+    .before {
+      padding-block: var(--s8);
+      border-block: 1px solid var(--line);
     }
 
-    summary:hover,
-    details[open] summary {
-      color: var(--lime);
-    }
+    .before-grid { margin-top: var(--s6); }
 
-    details p {
-      max-width: 75ch;
-      padding: 0 12px 20px 0;
+    .before-grid li {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      align-items: baseline;
+      gap: var(--s2);
+      min-width: 0;
       color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    .download-section {
+    .note-number {
+      color: var(--quiet);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    .privacy {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 20px 32px;
+      align-items: center;
+      gap: 0 var(--s4);
+      padding-block: var(--s4);
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .download-heading {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .privacy .text-link,
+    .donation .text-link { color: var(--text); }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: var(--s8);
+    }
+
+    .split-grid > :last-child {
+      grid-column: span 2;
       min-width: 0;
     }
 
-    .download-heading img {
-      flex: 0 0 auto;
-      width: 48px;
-      height: 48px;
+    .story { padding-block: var(--s6) var(--s8); }
+
+    .story h2 {
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -.03em;
     }
 
-    .download-heading h2 {
-      font-size: 1.4rem;
+    .signature {
+      margin-top: var(--s2);
+      color: var(--quiet);
+      font-size: 13px;
     }
 
-    .download-heading p {
-      margin-top: 5px;
+    .story-copy > p {
+      max-width: 70ch;
       color: var(--muted);
-      font-size: .9375rem;
+      font-size: 15px;
+      line-height: 1.65;
     }
 
-    .download-section .actions {
-      margin-top: 0;
-    }
+    .story-copy > p + p { margin-top: var(--s2); }
 
-    .download-reminder {
-      flex-basis: 100%;
-      margin: 0;
+    .donation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0 var(--s3);
+      margin-top: var(--s3);
       color: var(--muted);
-      font-size: .9375rem;
+      font-size: 13px;
+    }
+
+    .donation a {
+      min-width: 0;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .faq {
+      padding-block: var(--s6);
+      border-top: 1px solid var(--line);
+    }
+
+    .faq > h2 { padding-top: var(--s3); }
+    .faq-list { min-width: 0; }
+
+    details + details { border-top: 1px solid var(--line); }
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s4);
+      min-height: 48px;
+      padding-block: var(--s3);
+      border-radius: var(--s1);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      list-style: none;
+      cursor: pointer;
+      transition: opacity 160ms var(--ease);
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      flex: 0 0 16px;
+      color: var(--muted);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1;
+      text-align: center;
+    }
+
+    details[open] > summary::after { content: "−"; }
+    summary:active { opacity: .7; }
+
+    .faq-answer {
+      max-width: 68ch;
+      padding: 0 var(--s8) var(--s4) 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     .site-footer {
-      border-top: 1px solid var(--border-strong);
-      padding-block: 24px 32px;
       color: var(--muted);
-      font-size: .875rem;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      padding-block: var(--s4) var(--s6);
+      border-top: 1px solid var(--line);
     }
 
     .footer-top {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px 24px;
+      gap: var(--s2) var(--s6);
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px 20px;
-    }
-
-    .footer-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
+      gap: var(--s6);
     }
 
     .disclaimer {
-      max-width: 75ch;
-      margin-top: 16px;
-    }
-
-    .story-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
-      gap: 48px;
-      align-items: start;
-    }
-
-    .story p {
-      max-width: 62ch;
-      margin-top: 14px;
-      color: var(--muted);
-    }
-
-    .donate-card {
-      padding: 24px;
-      border: 1px solid var(--border-strong);
-      border-radius: 12px;
-      background: var(--surface);
-    }
-
-    .donate-card h3 {
-      font-size: 16px;
-    }
-
-    .donate-card p {
-      margin-top: 8px;
-      color: var(--muted);
-    }
-
-    .donate-email {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      margin-top: 8px;
-      color: var(--lime);
-      font-weight: 600;
-      overflow-wrap: anywhere;
-    }
-
-    .donate-note {
-      font-size: 13px;
+      max-width: 90ch;
+      margin-top: var(--s2);
       color: var(--quiet);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .text-link:hover { color: var(--text); }
+
+      .text-link:hover .link-label::after,
+      .brand:hover .link-label::after {
+        transform: scaleX(1);
+      }
+
+      .button:hover { transform: translateY(-2px); }
+      .button:hover::before { opacity: 1; }
+      .button:active { transform: scale(.98); }
+
+      .tab:hover { color: var(--text); }
+      summary:hover { color: var(--accent); }
+      .skip-link:hover { background: var(--text); }
+    }
+
+    @media (max-width: 1024px) {
+      .container { width: calc(100% - var(--s12)); }
     }
 
     @media (max-width: 800px) {
-      .hero,
-      .settings-layout,
-      .privacy-layout {
-        gap: 32px;
-      }
+      .container { width: calc(100% - var(--s8)); }
 
-      .hero {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-      }
-
-      .setup-layout {
-        gap: 24px;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .container {
-        width: calc(100% - 40px);
-      }
-
-      .hero,
-      .setup-layout,
-      .settings-layout,
-      .privacy-layout,
-      .story-layout {
+      .three-columns {
         grid-template-columns: minmax(0, 1fr);
+        gap: var(--s4);
       }
 
-      .hero {
-        padding-block: 36px 40px;
+      .feature p { max-width: 65ch; }
+
+      .feature + .feature {
+        padding-top: var(--s4);
+        border-top: 1px solid var(--line);
       }
 
-      h1 {
-        max-width: 16ch;
-      }
-
-      .hero-description {
-        font-size: 1.0625rem;
-      }
-
-      .section {
-        padding-block: 36px;
-      }
-
-      .screenshot {
-        max-width: 440px;
-      }
+      .feature + .feature::before { display: none; }
+      .before-grid { margin-top: var(--s4); }
     }
 
-    @media (max-width: 480px) {
-      .site-header .container {
+    @media (max-width: 600px) {
+      html { scroll-padding-top: 80px; }
+
+      .nav {
+        min-height: 64px;
+        gap: var(--s2);
+      }
+
+      .brand { font-size: 16px; }
+      .brand img { width: 24px; height: 24px; }
+
+      .nav-actions {
+        gap: var(--s3);
+        font-size: 12px;
+      }
+
+      .button-small {
+        padding-inline: var(--s3);
+        font-size: 12px;
+      }
+
+      .hero { padding-block: var(--s8); }
+
+      .hero h1 {
+        font-size: clamp(32px, 10.5vw, 52px);
+        letter-spacing: -.04em;
+      }
+
+      .eyebrow { font-size: 12px; }
+
+      .hero-copy {
+        max-width: 35ch;
+        font-size: 16px;
+      }
+
+      .hero-actions { gap: var(--s2) var(--s4); }
+
+      .hero-actions .button {
+        padding-inline: var(--s4);
+        font-size: 14px;
+      }
+
+      .hero-actions .text-link { font-size: 13px; }
+
+      .features,
+      .before { padding-block: var(--s6); }
+
+      .privacy {
         align-items: flex-start;
-        gap: 4px;
-        padding-block: 12px;
+        flex-direction: column;
       }
 
-      .navigation {
-        width: 100%;
-        justify-content: space-between;
-        gap: 0 8px;
+      .split-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--s4);
       }
 
-      .navigation a {
-        font-size: .875rem;
+      .split-grid > :last-child { grid-column: auto; }
+
+      .story { padding-block: var(--s4) var(--s6); }
+
+      .story-heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: var(--s2) var(--s4);
       }
 
-      .hero .actions,
-      .download-section .actions {
-        align-items: stretch;
-        width: 100%;
-      }
+      .story h2 { font-size: 24px; }
+      .signature { margin: 0; }
+      .story-copy > p { font-size: 14px; }
 
-      .hero .button,
-      .download-section .button {
-        width: 100%;
-      }
+      .faq { gap: var(--s2); }
+      .faq > h2 { padding-top: 0; }
 
-      .first-run {
-        padding: 20px;
-      }
-
-      .download-heading {
-        align-items: flex-start;
-      }
+      .footer-top { align-items: flex-start; }
+      .footer-top > p { flex-basis: 100%; }
     }
 
-    /*
-      Motion is decorative only. Nothing is hidden while waiting
-      for JavaScript or scrolling, and hash targets remain visible.
-    */
-    @media (prefers-reduced-motion: no-preference) {
-      html {
-        scroll-behavior: smooth;
-      }
-
-      .hero .screenshot {
-        animation: settle-in 450ms ease-out;
-      }
-
-      .button {
-        transition:
-          background-color 160ms ease,
-          border-color 160ms ease,
-          transform 160ms ease;
-      }
-
-      @keyframes settle-in {
-        from { transform: translateY(8px); }
-        to { transform: translateY(0); }
-      }
-    }
-
-    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-      .button:hover {
-        transform: translateY(-2px);
-      }
-
-      .button:active {
-        transform: translateY(0);
-      }
+    @media (max-width: 359px) {
+      .nav-github { display: none; }
+      .hero-actions { flex-direction: column; }
+      .meta { max-width: 28ch; margin-inline: auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation: none !important;
         transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .button:hover,
+      .button:active,
+      .tab:active {
+        transform: none;
       }
     }
   </style>
@@ -728,417 +866,418 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container">
+  <header class="site-header" id="site-header">
+    <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="./" aria-label="BloxNest home">
-        <img src="assets/logo.svg" width="33" height="33" alt="">
-        <span>BloxNest</span>
+        <img src="assets/logo.svg" width="28" height="28" alt="">
+        <span class="link-label">BloxNest</span>
       </a>
 
-      <nav class="navigation" aria-label="Main navigation">
-        <a href="#start">How to start</a>
-        <a href="#privacy">Privacy</a>
-        <a href="https://github.com/bloxnest/BloxNest">Source code</a>
-      </nav>
-    </div>
+      <div class="nav-actions">
+        <a class="text-link nav-github" href="https://github.com/bloxnest/BloxNest">
+          <span class="link-label">GitHub</span>
+        </a>
+        <a class="button button-small"
+           href="https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe"
+           aria-label="Download BloxNest for Windows">
+          Download
+        </a>
+      </div>
+    </nav>
   </header>
 
   <main id="main" tabindex="-1">
-    <div class="container">
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <p class="byline">A Windows app by xRed1</p>
-          <h1 id="hero-title">Open multiple <span>Roblox windows.</span></h1>
+    <section class="hero container" aria-labelledby="hero-title">
+      <p class="eyebrow">Roblox multi-instance · Free for Windows</p>
+      <h1 id="hero-title">Open multiple<span>Roblox windows.</span></h1>
+      <p class="hero-copy">Open two Roblox windows—or more—with multiple accounts side by side.</p>
 
-          <p class="hero-description">
-            BloxNest opens several Roblox windows so you can use a
-            different account in each. It’s free and open-source,
-            with no installer.
-          </p>
-
-          <p class="launch-note">
-            Choose 1–5 windows with a click, or enter a number up to 20.
-            <strong>Starting a batch closes your existing Roblox windows.</strong>
-            Finish what you’re doing in-game first.
-          </p>
-
-          <div class="actions">
-            <a class="button"
-               href="https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe">
-              <svg width="18" height="18" viewBox="0 0 24 24"
-                   fill="none" stroke="currentColor" stroke-width="1.8"
-                   stroke-linecap="round" stroke-linejoin="round"
-                   aria-hidden="true" focusable="false">
-                <path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>
-              </svg>
-              Download BloxNest.exe
-            </a>
-            <a class="action-link"
-               href="https://github.com/bloxnest/BloxNest/releases">
-              See releases on GitHub
-            </a>
-          </div>
-
-          <p class="download-meta">
-            Windows 10 and 11 only · About 160 KB · MIT licence
-          </p>
-
-          <p class="download-warning">
-            <strong>The app isn’t code-signed yet.</strong>
-            Windows may warn you before it runs.
-            <a href="#first-run">Read the first-run note</a>
-            before deciding to open it.
-          </p>
-        </div>
-
-        <figure class="screenshot">
-          <img src="assets/app-main.png"
-               width="440" height="444"
-               fetchpriority="high"
-               alt="BloxNest with a count of six, a “Close Roblox &amp; open 6” button, and a status reporting six Roblox windows running.">
-          <figcaption>
-            The main window, with six windows selected.
-            <br>
-            <a href="assets/app-main.png">View the main screenshot full size</a>
-          </figcaption>
-        </figure>
-      </section>
-
-      <section class="section" id="start" aria-labelledby="start-title">
-        <h2 id="start-title">How to start</h2>
-        <p class="section-intro">
-          BloxNest is a single executable. Save it somewhere you want
-          to keep it, then run it when you need multiple windows.
-        </p>
-
-        <div class="setup-layout">
-          <ol class="steps">
-            <li>
-              <h3>Download the file from GitHub</h3>
-              <p>
-                The download button links directly to
-                <strong>BloxNest.exe</strong> in the latest GitHub release.
-                You can also
-                <a href="https://github.com/bloxnest/BloxNest/releases">read the release information</a>
-                before downloading.
-              </p>
-            </li>
-            <li>
-              <h3>Read the warning, then decide whether to run it</h3>
-              <p>
-                There’s no setup wizard. Open BloxNest.exe if you
-                choose to proceed after reading the
-                <a href="#first-run">first-run note</a>.
-              </p>
-            </li>
-            <li>
-              <h3>Choose a count and open Roblox</h3>
-              <p>
-                Finish anything in your current Roblox windows first:
-                the opening button closes them before starting the
-                selected number.
-              </p>
-              <p>
-                Use a <strong>different Roblox account in each window</strong>.
-                Using the same account twice kicks you out of one session.
-                Start with a few windows—each one uses memory.
-              </p>
-            </li>
-          </ol>
-
-          <aside class="first-run" id="first-run"
-                 aria-labelledby="first-run-title">
-            <h3 id="first-run-title">“Windows protected your PC”</h3>
-            <p>
-              BloxNest isn’t code-signed yet. Windows may show this
-              warning on the first run.
-            </p>
-            <p>
-              Check that the file came from the linked
-              <a href="https://github.com/bloxnest/BloxNest/releases">GitHub releases</a>.
-              The
-              <a href="https://github.com/bloxnest/BloxNest">source code</a>
-              is public, but that alone doesn’t prove a downloaded
-              executable is safe or matches the source.
-            </p>
-            <p>
-              If you’ve checked the release and choose to proceed,
-              select <strong>“More info”</strong>, then
-              <strong>“Run anyway”</strong>, if Windows offers those options.
-            </p>
-            <p>
-              <strong>If you’re unsure, don’t run it.</strong>
-              You don’t need to disable Windows security to use this page.
-            </p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section settings-layout"
-               aria-labelledby="settings-title">
-        <div>
-          <h2 id="settings-title">What you can change</h2>
-          <p class="section-intro">
-            The Options screen controls timing, Roblox updates, and
-            what happens when you close BloxNest. Your choices are
-            saved for next time.
-          </p>
-
-          <dl class="settings-list">
-            <div>
-              <dt>Time between windows</dt>
-              <dd>
-                Choose 3, 5, or 8 seconds. A longer delay gives a slower
-                PC more time to open each window.
-              </dd>
-            </div>
-            <div>
-              <dt>Update Roblox before opening</dt>
-              <dd>
-                When enabled, BloxNest checks Roblox’s latest version.
-                If an update is needed, it checks that your existing
-                Roblox updater is signed by Roblox Corporation before
-                running it.
-              </dd>
-            </div>
-            <div>
-              <dt>Roblox update alerts</dt>
-              <dd>
-                When enabled, BloxNest checks every 30 minutes while
-                running and tells you when Roblox updates.
-              </dd>
-            </div>
-            <div>
-              <dt>Keep running in hidden icons</dt>
-              <dd>
-                Closing the BloxNest window can leave it running in
-                the system tray. Right-click its icon to open or quit.
-                Launching BloxNest again brings back the running app.
-              </dd>
-            </div>
-          </dl>
-        </div>
-
-        <figure class="screenshot">
-          <img src="assets/app-options.png"
-               width="440" height="510"
-               loading="lazy" decoding="async"
-               alt="BloxNest Options with switches for keeping the app in hidden icons, updating Roblox before opening, and update alerts, plus 3, 5, and 8 second delays.">
-          <figcaption>
-            The Options screen.
-            <br>
-            <a href="assets/app-options.png">View the options screenshot full size</a>
-          </figcaption>
-        </figure>
-      </section>
-
-      <section class="section privacy-layout" id="privacy"
-               aria-labelledby="privacy-title">
-        <div>
-          <h2 id="privacy-title">Privacy</h2>
-          <p class="section-intro">
-            BloxNest doesn’t collect, store, or send your Roblox
-            account details, passwords, or cookies. It has no
-            analytics or tracking.
-          </p>
-          <p class="section-intro">
-            It does contact Roblox for version checks. That is
-            separate from collecting account information.
-          </p>
-
-          <div class="privacy-links">
-            <a href="https://github.com/bloxnest/BloxNest">
-              Read the source
-            </a>
-            <a href="https://github.com/bloxnest/BloxNest/blob/main/PRIVACY.md">
-              Full privacy text
-            </a>
-          </div>
-        </div>
-
-        <dl class="privacy-list">
-          <div>
-            <dt>Version checks go to Roblox</dt>
-            <dd>
-              BloxNest only contacts Roblox’s own server to check
-              the newest version. It doesn’t download Roblox installers
-              or update packages itself. When needed and enabled, it
-              runs the Roblox updater already on your PC after checking
-              its signature.
-            </dd>
-          </div>
-          <div>
-            <dt>No injection or direct game-file changes</dt>
-            <dd>
-              BloxNest opens Roblox and stops its “only one window”
-              check from closing the extra windows. BloxNest itself
-              doesn’t modify Roblox’s files or inject code into the
-              game. Roblox’s updater handles any game updates.
-            </dd>
-          </div>
-          <div>
-            <dt>Preferences are saved locally</dt>
-            <dd>
-              BloxNest saves your options in your AppData folder.
-              That preferences file is the only file BloxNest itself saves.
-            </dd>
-          </div>
-        </dl>
-      </section>
-
-      <section class="section story-layout" id="story" aria-labelledby="story-title">
-        <div class="story">
-          <h2 id="story-title">Why I made this</h2>
-          <p>
-            Hey, I’m xRed1. I’m a student and just a regular dude.
-            I always wanted my alt account open in a second window,
-            playing music for me and my friends while we hang out.
-            Roblox only lets you open one window, so I made BloxNest.
-          </p>
-          <p>
-            I built it on my own, with no budget, and it’s free.
-          </p>
-        </div>
-
-        <aside class="donate-card" aria-labelledby="donate-title">
-          <h3 id="donate-title">Want to support it?</h3>
-          <p>
-            If BloxNest helped you and you want to chip in,
-            even $1 means a lot to me.
-          </p>
-          <a class="donate-email"
-             href="mailto:juneclark.lm@gmail.com?subject=BloxNest%20donation">
-            juneclark.lm@gmail.com
-          </a>
-          <p class="donate-note">
-            Totally optional. The app works the same either way.
-          </p>
-        </aside>
-      </section>
-
-      <section class="section" aria-labelledby="faq-title">
-        <h2 id="faq-title">Questions before downloading</h2>
-
-        <div class="faq-list">
-          <details open>
-            <summary>Can I get banned?</summary>
-            <p>
-              BloxNest doesn’t modify Roblox or inject anything,
-              but it isn’t made or approved by Roblox.
-              Nobody can promise anything. Use it at your own risk.
-            </p>
-          </details>
-
-          <details>
-            <summary>Can I use the same account in two windows?</summary>
-            <p>
-              No. Using the same Roblox account twice kicks you out
-              of one session. Use a different account in each window.
-            </p>
-          </details>
-
-          <details>
-            <summary>How many windows should I open?</summary>
-            <p>
-              You can choose 1–5 with a click or enter a number up to 20.
-              That is the app’s limit, not a promise that your PC can
-              run 20 comfortably. Every Roblox window uses memory.
-              Start small.
-            </p>
-          </details>
-
-          <details>
-            <summary>Why does Windows show a warning?</summary>
-            <p>
-              BloxNest isn’t code-signed yet, so Windows may show
-              “Windows protected your PC.” Read the
-              <a href="#first-run">first-run note</a> and check the release
-              information before deciding whether to run it.
-            </p>
-          </details>
-
-          <details>
-            <summary>Does BloxNest download Roblox updates?</summary>
-            <p>
-              It retrieves version information, not Roblox update
-              packages. With updating before opening enabled, it runs
-              the Roblox updater already on your PC when needed,
-              after checking that it’s signed by Roblox Corporation.
-              The Roblox updater handles the download.
-            </p>
-          </details>
-
-          <details>
-            <summary>I closed BloxNest. Why is it still running?</summary>
-            <p>
-              With “keep running in hidden icons” enabled, closing
-              the window leaves BloxNest in the system tray.
-              Right-click its icon to open or quit. Launching BloxNest
-              again brings back the running app rather than starting
-              another copy.
-            </p>
-          </details>
-
-          <details>
-            <summary>Is it free, and what does it run on?</summary>
-            <p>
-              Yes. BloxNest is free and open-source under the MIT
-              licence, made by xRed1. It runs on Windows 10 and 11.
-              The executable is about 160 KB and has no installer.
-              It does not run on phones.
-            </p>
-          </details>
-        </div>
-      </section>
-
-      <section class="section download-section"
-               aria-labelledby="download-title">
-        <div class="download-heading">
-          <img src="assets/icon-256.png"
-               width="48" height="48" loading="lazy" alt="">
-          <div>
-            <h2 id="download-title">Download BloxNest</h2>
-            <p>Windows 10 and 11 · About 160 KB</p>
-          </div>
-        </div>
-
-        <div class="actions">
+      <div class="hero-cta">
+        <div class="hero-actions">
           <a class="button"
              href="https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe">
-            Download BloxNest.exe
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/>
+            </svg>
+            Download BloxNest
           </a>
-          <a class="action-link"
-             href="https://github.com/bloxnest/BloxNest/releases">
-            GitHub releases
+          <a class="text-link" href="https://github.com/bloxnest/BloxNest">
+            <span class="link-label">View on GitHub</span>
+            <span aria-hidden="true">↗</span>
           </a>
         </div>
+        <p class="meta">v1.0.0 · Windows 10 &amp; 11 · 160 KB · Free</p>
+      </div>
 
-        <p class="download-reminder">
-          Not code-signed yet.
-          <a href="#first-run">Read the Windows first-run note.</a>
-        </p>
-      </section>
+      <div class="preview">
+        <div class="tab-bar">
+          <div class="tabs" role="tablist" aria-label="App screenshots"
+               aria-orientation="horizontal" data-active="0">
+            <span class="tab-indicator" aria-hidden="true"></span>
+            <button class="tab" id="tab-main" type="button" role="tab"
+                    aria-selected="true" aria-controls="panel-main"
+                    tabindex="0">
+              Main
+            </button>
+            <button class="tab" id="tab-options" type="button" role="tab"
+                    aria-selected="false" aria-controls="panel-options"
+                    tabindex="-1">
+              Options
+            </button>
+          </div>
+        </div>
+
+        <div class="screenshot-frame">
+          <div class="screenshot-stage">
+            <div class="screenshot-panel" id="panel-main">
+              <img src="assets/app-main.png" width="440" height="444"
+                   fetchpriority="high" decoding="async"
+                   alt="BloxNest Main screen with six windows selected and a status reporting six Roblox windows running.">
+            </div>
+            <div class="screenshot-panel" id="panel-options" hidden>
+              <img src="assets/app-options.png" width="440" height="510"
+                   decoding="async"
+                   alt="BloxNest Options screen with settings for hidden-icons behaviour, Roblox updates, update alerts and time between windows.">
+            </div>
+          </div>
+        </div>
+
+        <noscript>
+          <details class="preview-fallback">
+            <summary>View the Options screenshot</summary>
+            <img src="assets/app-options.png" width="440" height="510"
+                 loading="lazy" decoding="async"
+                 alt="BloxNest Options screen with settings for hidden-icons behaviour, Roblox updates, update alerts and time between windows.">
+          </details>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="features container" aria-labelledby="features-title">
+      <h2 class="sr-only" id="features-title">Just what you need</h2>
+      <ul class="three-columns">
+        <li class="feature" data-reveal data-stagger="0">
+          <h3>Pick a number</h3>
+          <p>Choose 1 to 5 in one click, or type up to 20.</p>
+        </li>
+        <li class="feature" data-reveal data-stagger="1">
+          <h3>Always the newest Roblox</h3>
+          <p>Checks for updates and runs Roblox’s own updater first.</p>
+        </li>
+        <li class="feature" data-reveal data-stagger="2">
+          <h3>Stays out of the way</h3>
+          <p>Lives in your hidden icons and tells you when Roblox updates.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="before container" aria-labelledby="before-title" data-reveal>
+      <h2 class="section-label" id="before-title">Before you start</h2>
+      <ol class="before-grid three-columns">
+        <li>
+          <span class="note-number" aria-hidden="true">01</span>
+          <p><strong>Different accounts.</strong> Use one per window; the same account twice gets kicked.</p>
+        </li>
+        <li>
+          <span class="note-number" aria-hidden="true">02</span>
+          <p><strong>Finish your game first.</strong> Starting closes any Roblox windows already open.</p>
+        </li>
+        <li>
+          <span class="note-number" aria-hidden="true">03</span>
+          <p><strong>Not code-signed yet.</strong> Windows may say “Windows protected your PC”. Only if you trust the download, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+        </li>
+      </ol>
+    </section>
+
+    <div class="privacy container" data-reveal>
+      <p>No tracking, no personal data, no changes to Roblox’s files.</p>
+      <a class="text-link"
+         href="https://github.com/bloxnest/BloxNest/blob/main/PRIVACY.md">
+        <span class="link-label">Privacy details</span>
+        <span aria-hidden="true">↗</span>
+      </a>
     </div>
+
+    <section class="story split-grid container" aria-labelledby="story-title" data-reveal>
+      <div class="story-heading">
+        <h2 id="story-title">Why I made this</h2>
+        <p class="signature">— xRed1</p>
+      </div>
+      <div class="story-copy">
+        <p>I’m xRed1, a student and just a regular dude.</p>
+        <p>I wanted my alt in a second window, playing music for me and my friends while we hang out.</p>
+        <p>Roblox only allows one window, so I made BloxNest—built alone, with no budget, and free.</p>
+        <div class="donation">
+          <p>Want to chip in? Even $1 means a lot.</p>
+          <a class="text-link"
+             href="mailto:juneclark.lm@gmail.com?subject=BloxNest%20donation">
+            <span class="link-label">juneclark.lm@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq split-grid container" id="faq" aria-labelledby="faq-title">
+      <h2 class="section-label" id="faq-title">A few quick answers</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How do I open two Roblox windows at once?</summary>
+          <p class="faq-answer">Finish your game, open BloxNest, choose 2 windows and start them. Use a different account in each window to play with multiple accounts at once.</p>
+        </details>
+        <details>
+          <summary>Can I get banned?</summary>
+          <p class="faq-answer">BloxNest doesn’t modify Roblox or inject anything. It isn’t made or approved by Roblox, so nobody can promise you won’t be banned; use it at your own risk.</p>
+        </details>
+        <details id="licence">
+          <summary>Is BloxNest free?</summary>
+          <p class="faq-answer">Yes, BloxNest is free to use. Its code is source available under the PolyForm Strict License 1.0.0: you can read the code and use the app, but you can’t redistribute it or publish modified versions.</p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="footer-inner container">
       <div class="footer-top">
-        <p><strong>BloxNest</strong> · Made by xRed1 · MIT licence</p>
-
+        <p>Made by xRed1 · Source available</p>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="https://github.com/bloxnest/BloxNest">Source code</a>
-          <a href="https://github.com/bloxnest/BloxNest/releases">Releases</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#story">Support</a>
+          <a class="text-link" href="https://github.com/bloxnest/BloxNest">
+            <span class="link-label">GitHub</span>
+          </a>
+          <a class="text-link" href="https://github.com/bloxnest/BloxNest/releases">
+            <span class="link-label">Releases</span>
+          </a>
+          <a class="text-link"
+             href="https://github.com/bloxnest/BloxNest/blob/main/PRIVACY.md">
+            <span class="link-label">Privacy</span>
+          </a>
         </nav>
       </div>
-
-      <p class="disclaimer">
-        Not affiliated with or endorsed by Roblox Corporation.
-        Roblox is a trademark of Roblox Corporation.
-      </p>
+      <p class="disclaimer">Not affiliated with or endorsed by Roblox Corporation. Roblox is a trademark of Roblox Corporation.</p>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      // Progressive enhancement: the Main image works without JavaScript.
+      // Inactive panels use native hidden rather than opacity alone.
+      const preview = document.querySelector(".preview");
+      const tabList = preview.querySelector(".tabs");
+      const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map(tab =>
+        document.getElementById(tab.getAttribute("aria-controls"))
+      );
+
+      panels.forEach((panel, index) => {
+        panel.setAttribute("role", "tabpanel");
+        panel.setAttribute("aria-labelledby", tabs[index].id);
+      });
+
+      function selectTab(index, moveFocus = false) {
+        tabList.dataset.active = String(index);
+
+        tabs.forEach((tab, i) => {
+          const selected = i === index;
+          tab.setAttribute("aria-selected", String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          panels[i].hidden = !selected;
+          panels[i].tabIndex = selected ? 0 : -1;
+        });
+
+        if (moveFocus) tabs[index].focus({ preventScroll: true });
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectTab(index));
+
+        tab.addEventListener("keydown", event => {
+          let next;
+
+          switch (event.key) {
+            case "ArrowRight":
+              next = (index + 1) % tabs.length;
+              break;
+            case "ArrowLeft":
+              next = (index - 1 + tabs.length) % tabs.length;
+              break;
+            case "Home":
+              next = 0;
+              break;
+            case "End":
+              next = tabs.length - 1;
+              break;
+            default:
+              return;
+          }
+
+          event.preventDefault();
+          selectTab(next, true);
+        });
+      });
+
+      selectTab(0);
+      preview.classList.add("tabs-ready");
+
+      // Scroll-linked work is limited to one read/write per queued frame.
+      const header = document.getElementById("site-header");
+      let headerFrame = 0;
+      let wasScrolled = null;
+
+      function updateHeader() {
+        headerFrame = 0;
+        const scrolled = window.scrollY > 8;
+
+        if (scrolled !== wasScrolled) {
+          header.classList.toggle("is-scrolled", scrolled);
+          wasScrolled = scrolled;
+        }
+      }
+
+      function queueHeaderUpdate() {
+        if (!headerFrame) {
+          headerFrame = window.requestAnimationFrame(updateHeader);
+        }
+      }
+
+      window.addEventListener("scroll", queueHeaderUpdate, { passive: true });
+      window.addEventListener("pageshow", queueHeaderUpdate);
+      updateHeader();
+
+      /*
+       * No hidden CSS state and no initialization flash.
+       * Only elements initially below the viewport are observed.
+       * Animation begins slightly before entry, runs once, then leaves
+       * the element in its normal visible state.
+       */
+      const revealElements = Array.from(
+        document.querySelectorAll("[data-reveal]")
+      );
+      const pending = new Set();
+      const animations = new Map();
+      const desktopQuery = window.matchMedia("(min-width: 801px)");
+      let observer = null;
+
+      function cancelReveal(element) {
+        pending.delete(element);
+        if (observer) observer.unobserve(element);
+
+        const animation = animations.get(element);
+        if (animation) {
+          animation.cancel();
+          animations.delete(element);
+        }
+      }
+
+      function showEverything() {
+        if (observer) observer.disconnect();
+        pending.clear();
+
+        animations.forEach(animation => animation.cancel());
+        animations.clear();
+      }
+
+      function initializeReveals() {
+        if (
+          motionQuery.matches ||
+          !("IntersectionObserver" in window) ||
+          !("animate" in Element.prototype)
+        ) {
+          return;
+        }
+
+        const viewportHeight = window.innerHeight;
+
+        // Batch geometry reads before setting up any animation writes.
+        const belowViewport = revealElements.filter(element =>
+          element.getBoundingClientRect().top > viewportHeight + 64
+        );
+
+        if (!belowViewport.length) return;
+
+        observer = new IntersectionObserver(entries => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting || !pending.has(entry.target)) continue;
+
+            const element = entry.target;
+            pending.delete(element);
+            observer.unobserve(element);
+
+            if (
+              motionQuery.matches ||
+              element.contains(document.activeElement)
+            ) {
+              continue;
+            }
+
+            const stagger = desktopQuery.matches
+              ? Math.min(Number(element.dataset.stagger) || 0, 2) * 50
+              : 0;
+
+            const animation = element.animate(
+              [
+                { opacity: 0, transform: "translateY(12px)" },
+                { opacity: 1, transform: "translateY(0)" }
+              ],
+              {
+                duration: 420,
+                delay: stagger,
+                easing: "cubic-bezier(.22, 1, .36, 1)",
+                fill: "backwards"
+              }
+            );
+
+            animations.set(element, animation);
+
+            animation.onfinish = () => {
+              if (animations.get(element) === animation) {
+                animations.delete(element);
+              }
+            };
+          }
+
+          if (!pending.size) observer.disconnect();
+        }, {
+          threshold: 0,
+          rootMargin: "0px 0px 64px 0px"
+        });
+
+        belowViewport.forEach(element => {
+          pending.add(element);
+          observer.observe(element);
+        });
+      }
+
+      initializeReveals();
+
+      // Keyboard focus must never remain inside an entrance animation.
+      document.addEventListener("focusin", event => {
+        if (!(event.target instanceof Element)) return;
+        const element = event.target.closest("[data-reveal]");
+        if (element) cancelReveal(element);
+      });
+
+      // A resized layout or restored page should not hide already seen content.
+      window.addEventListener("resize", showEverything, { passive: true });
+      window.addEventListener("pageshow", event => {
+        if (event.persisted) showEverything();
+      });
+
+      const onMotionChange = event => {
+        if (event.matches) showEverything();
+      };
+
+      if (motionQuery.addEventListener) {
+        motionQuery.addEventListener("change", onMotionChange);
+      } else if (motionQuery.addListener) {
+        motionQuery.addListener(onMotionChange);
+      }
+    })();
+  </script>
 </body>
 </html>
