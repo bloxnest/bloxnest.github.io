@@ -3,50 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows</title>
-  <meta name="description" content="BloxNest is a free Roblox multi-instance app for Windows. Open two Roblox windows or more, and use multiple Roblox accounts at once. Made by xRed1.">
+  <title>BloxNest | Open Multiple Roblox Windows</title>
+  <meta name="description" content="BloxNest is a free Windows utility for opening multiple Roblox windows side by side. Simple, lightweight, and available on GitHub. Made by xRed1.">
   <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="author" content="xRed1">
+  <meta name="application-name" content="BloxNest">
   <meta name="theme-color" content="#0b0f0b">
   <link rel="canonical" href="https://bloxnest.github.io/">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BloxNest">
-  <meta property="og:title" content="BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows">
-  <meta property="og:description" content="A free Roblox multi-instance app for Windows. Open two Roblox windows or more, with a different account in each. Made by xRed1.">
+  <meta property="og:title" content="BloxNest | Open Multiple Roblox Windows">
+  <meta property="og:description" content="BloxNest is a free Windows utility for opening multiple Roblox windows side by side.">
   <meta property="og:url" content="https://bloxnest.github.io/">
-  <meta property="og:image" content="https://bloxnest.github.io/assets/app-main.png">
-  <meta property="og:image:width" content="440">
-  <meta property="og:image:height" content="444">
-  <meta property="og:image:alt" content="BloxNest Main screen with six windows selected and a status reporting six Roblox windows running.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://bloxnest.github.io/assets/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BloxNest logo and headline next to the BloxNest Windows app with six Roblox windows running.">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BloxNest: Roblox Multi Instance - Open Multiple Roblox Windows">
-  <meta name="twitter:description" content="A free Roblox multi-instance app for Windows. Open two Roblox windows or more, with a different account in each. Made by xRed1.">
-  <meta name="twitter:image" content="https://bloxnest.github.io/assets/app-main.png">
-  <meta name="twitter:image:alt" content="BloxNest Main screen with six windows selected and a status reporting six Roblox windows running.">
+  <meta name="twitter:title" content="BloxNest | Open Multiple Roblox Windows">
+  <meta name="twitter:description" content="BloxNest is a free Windows utility for opening multiple Roblox windows side by side.">
+  <meta name="twitter:image" content="https://bloxnest.github.io/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="BloxNest logo and headline next to the BloxNest Windows app with six Roblox windows running.">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://bloxnest.github.io/#website",
+        "name": "BloxNest",
+        "url": "https://bloxnest.github.io/",
+        "inLanguage": "en",
+        "about": { "@id": "https://bloxnest.github.io/#application" }
+      },
+      {
         "@type": "SoftwareApplication",
         "@id": "https://bloxnest.github.io/#application",
         "name": "BloxNest",
-        "description": "BloxNest is a free Roblox multi-instance app for Windows. Open two Roblox windows or more, and use multiple Roblox accounts at once. Made by xRed1. Its code is source available under the PolyForm Strict License 1.0.0.",
+        "url": "https://bloxnest.github.io/",
+        "description": "BloxNest is a free Windows utility for opening multiple Roblox windows side by side.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Windows 10, Windows 11",
         "softwareVersion": "1.0.0",
-        "license": "PolyForm Strict License 1.0.0",
+        "downloadUrl": "https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe",
+        "isAccessibleForFree": true,
         "offers": {
           "@type": "Offer",
           "price": 0,
           "priceCurrency": "USD"
         },
-        "downloadUrl": "https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe",
-        "url": "https://bloxnest.github.io/",
-        "image": "https://bloxnest.github.io/assets/app-main.png",
+        "license": "https://github.com/bloxnest/BloxNest/blob/main/LICENSE",
+        "image": "https://bloxnest.github.io/assets/og-image.jpg",
+        "screenshot": [
+          "https://bloxnest.github.io/assets/app-main.png",
+          "https://bloxnest.github.io/assets/app-options.png"
+        ],
+        "sameAs": ["https://github.com/bloxnest/BloxNest"],
         "author": {
           "@type": "Person",
           "name": "xRed1"
@@ -788,7 +811,7 @@
   <header class="site-header">
     <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="./" aria-label="BloxNest home">
-        <img src="assets/logo.svg" width="32" height="32" alt="">
+        <img src="assets/logo.svg" width="32" height="32" alt="BloxNest">
         <span>BloxNest</span>
       </a>
       <div class="nav-actions">
@@ -814,7 +837,7 @@
       <div class="hero-grid container">
         <div class="hero-copy">
           <h1 id="hero-title">Open multiple <span>Roblox windows.</span></h1>
-          <p class="hero-description">Run multiple Roblox accounts side by side with a simple Windows utility.</p>
+          <p class="hero-description">BloxNest is a simple Windows utility for running multiple Roblox accounts side by side.</p>
           <div class="actions">
             <a class="button" href="https://github.com/bloxnest/BloxNest/releases/latest/download/BloxNest.exe">
               <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg>Download BloxNest
@@ -831,7 +854,7 @@
         <img class="hero-app shot" src="assets/app-main.png"
              width="440" height="444" loading="eager"
              fetchpriority="high" decoding="async"
-             alt="BloxNest Main screen with window count controls, a launch button, and six Roblox windows running.">
+             alt="BloxNest Windows application showing its Roblox window count controls, with six Roblox windows running.">
       </div>
     </section>
 
@@ -884,7 +907,7 @@
       <div class="split">
         <img class="showcase-art shot" src="assets/app-options.png" width="440" height="510"
              loading="lazy" decoding="async" data-reveal
-             alt="BloxNest Options screen with launch delay, system tray behavior, and Roblox update settings.">
+             alt="BloxNest Options screen with launch delay, system tray and Roblox update settings.">
 
         <div class="showcase-copy" data-reveal data-delay="90">
           <h2 id="showcase-title">Less setup.<br>More side by side.</h2>
@@ -902,7 +925,7 @@
       <div class="split world-grid" data-reveal>
         <img class="world-image" src="assets/world-obby.jpg"
              width="1280" height="720" loading="lazy" decoding="async"
-             alt="Four blocky avatar friends on a floating obstacle-course platform at dusk.">
+             alt="Four blocky Roblox-style avatars hanging out on a floating obby platform at dusk.">
         <div class="world-copy">
           <h2 id="world-title">Made for more than one account.</h2>
           <p>Play, test, trade, or manage multiple Roblox accounts side by side.</p>
